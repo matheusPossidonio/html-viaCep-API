@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--aqui temos como colocar o autor da pagina-->
+    <meta name="author" content="Matheus Possidonio">
+    <!--aqui temos o titulo da pagina-->
+    <title>Consumindo a api do via cep</title>
+    <!--abaixo temos como conectar o css-->
+    <link rel="stylesheet" href="style.css">
+    <!--abaixo temos como conectar o js-->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <p>
+        <h1>Consumindo a api do via cep:</h1>
+    </p>
+    <!-- AQUI temos a tabela que serve para mostrar o  -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Cep</th>
+                <th>Lagradouo</th>
+                <th>Complemento</th>
+                <th>Bairo</th>
+                <th>Localidade</th>
+                <th>Uf</th>
+                <th>Ibge</th>
+                <th>Gia</th>
+                <th>DDD</th>
+                <th>Siafi</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Cep</th>
+                <th>Lagradouo</th>
+                <th>Complemento</th>
+                <th>Bairo</th>
+                <th>Localidade</th>
+                <th>Uf</th>
+                <th>Ibge</th>
+                <th>Gia</th>
+                <th>DDD</th>
+                <th>Siafi</th>
+            </tr>
+        </tfoot>
+        <tbody id="tbody">
+            <tr>
+                <td>
+                    Carregando ...
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+  
+
+    <script>
+        //aqui temos um exemplo de um cep passado
+        let cepInformado = '58401755';
+        //abaixo passo o cep informado para a url para acessar os dados
+        fetch(`https://viacep.com.br/ws/${cepInformado}/json/`).then(async function (response) {
+            let cep = await response.json();
+            let html = "";
+                html += `
+                <tr>
+                    <td>${cep.cep}</td>
+                    <td>${cep.logradouro}</td>
+                    <td>${cep.complemento}</td>
+                    <td>${cep.bairro}</td>
+                    <td>${cep.localidade}</td>
+                    <td>${cep.uf}</td>
+                    <td>${cep.ibge}</td>
+                    <td>${cep.gia}</td>
+                    <td>${cep.ddd}</td>
+                    <td>${cep.siafi}</td>
+                </tr>
+                `
+            
+            document.getElementById("tbody").innerHTML = html
+        }).catch(function (err) {
+            console.warn('Algo deu errado', err);
+        });
+
+        /*
+        let data = {element: "barium"};
+        fetch("/post/data/here", {
+            method: "POST", 
+            body: JSON.stringify(data)
+        }).then(res => {
+            console.log("Request complete! response:", res);
+        });
+        */
+    </script>
+</body>
+</html>
