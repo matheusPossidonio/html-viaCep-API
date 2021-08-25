@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,41 +14,250 @@
     <!--abaixo temos como conectar o js-->
     <script src="script.js" defer></script>
 </head>
+
 <body>
     <p>
         <h1>Consumindo a api do via cep:</h1>
     </p>
+    <button onclick="mostrarVagas()">clique vagas</button><br><br>
+    <button onclick="mostrarCandidato()">clique candidato</button><br><br>
+
+    <form id="formularioCandidato" action="javascript:void(0);" method="POST" onsubmit="adicionarVaga()">
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="cpf">CPF</label>
+                <input type="text" class="form-control" id="cpf" placeholder="000.000.000-00" onblur=buscaCpf()>
+            </div>
+            
+
+            <div class="form-group col-md-4">
+                <label for="rg">Identidade</label>
+                <input type="text" class="form-control" id="id" placeholder="9654725">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="rg">Identidade</label>
+                <input type="text" class="form-control" id="vaga" placeholder="9654725">
+            </div>
+            <div class="form-group col-md-4">
+                <label for="rg">Identidade</label>
+                <input type="text" class="form-control" id="descricao" placeholder="9654725">
+            </div>
+            <button onclick="adicionarVaga()">adicionarVaga</button><br><br>
+
+            <div class="form-group col-md-2">
+                <label for="veiculo">Possui Veículo</label>
+                <select class="form-control" id="veiculo" placeholder="Carro">
+                    <option></option>
+                    <option>sim</option>
+                    <option>nao</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2">
+                <label for="habilitacao">Tipo da Habilitação</label>
+                <select class="form-control" id="habilitacao">
+                    <option></option>
+                    <option>carteira a</option>
+                    <option>carteira b</option>
+                    <option>carteira ab</option>
+                </select>
+            </div>
+        </div>
+
+        <h1> Dados Pessoais</h1>
+
+        <div class="form-row">
+            <div class="form-group col-md-7">
+                <label for="nome">Nome Completo</label>
+                <input type="text" class="form-control" id="nome" placeholder="Andre Carlos Souza e Silva">
+                <small class="form-tex text-muted">* Campo obrigadotrio. </small>
+            </div>
+
+            <div class="form-group col-md-5">
+                <label for="vaga">Vaga Selecionada</label>
+                <input type="text" class="form-control" id="vaga">
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="dataNascimento">Data de nascimento</label>
+                <input type="text" class="form-control" id="dataNascimento" placeholder="__/__/____">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="estadoCivil">Estado Civil</label>
+                <input type="text" class="form-control" id="estadoCivil" placeholder="Casado">
+            </div>
+
+            <div class="form-group col-md-4">
+                <label for="sexo">Sexo</label>
+                <select class="form-control" id="sexo">
+                    <option></option>
+                    <option>masculino</option>
+                    <option>feminino</option>
+                </select>
+            </div>
+
+        </div>
+        <h1> Endereço</h1>
+
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="cep">CEP</label>
+                <input type="text" class="form-control" id="cep" onblur=buscaCep()>
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-7">
+                <label for="endereco">Endereço</label>
+                <input type="text" class="form-control" id="endereco" placeholder="Rua paraiso">
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="numero">Numero</label>
+                <input type="text" class="form-control" id="numero" placeholder="101">
+            </div>
+
+            <div class="form-group col-md-3">
+                <label for="complemento">Complemento</label>
+                <input type="text" class="form-control" id="complemento" placeholder="Apt, Sala">
+            </div>
+
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="bairro">Bairro</label>
+                <input type="text" class="form-control" id="bairro" placeholder="Centro">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="cidade">Cidade</label>
+                <input type="text" class="form-control" id="cidade" placeholder="Belo Horizonte">
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="estado">Estado</label>
+
+                <select class="form-control" id="estado">
+                </select>
+            </div>
+
+        </div>
+
+        <h1></h1>
+        <h1></h1>
+        <h1></h1>
+        <h1></h1>
+
+        <h1> Contatos</h1>
+
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label for="telCelular">Telefone Celular</label>
+                <input type="text" class="form-control" id="telCelular">
+            </div>
+
+
+            <div class="form-group col-md-3">
+                <label for="telFixo">Telefone Fixo</label>
+                <input type="text" class="form-control" id="telFixo">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" placeholder="exemplo@gmail.com">
+            </div>
+
+        </div>
+
+
+        <button type="submit " class="btn btn-primary">Cadastrar</button>
+    </form>
+
+
     <!-- AQUI temos a tabela que serve para mostrar o  -->
-    <table border="1">
+    <table id="tabelaCandidato" border="1">
         <thead>
             <tr>
-                <th>Cep</th>
-                <th>Lagradouo</th>
-                <th>Complemento</th>
-                <th>Bairo</th>
-                <th>Localidade</th>
-                <th>Uf</th>
-                <th>Ibge</th>
-                <th>Gia</th>
-                <th>DDD</th>
-                <th>Siafi</th>
+                <th>id </th>
+                <th>nome </th>
+                <th>estado civil </th>
+                <th>genero </th>
+                <th>data de nascimento </th>
+                <th>cep </th>
+                <th>endereço </th>
+                <th>numero </th>
+                <th>complemento </th>
+                <th>bairro </th>
+                <th>uf </th>
+                <th>telefone fixo </th>
+                <th>telefone movel </th>
+                <th>email </th>
+                <th>cpf </th>
+                <th>id </th>
+                <th>rg </th>
+                <th>possui veiculo </th>
+                <th>tipo habilitação </th>
+                <th>vaga id </th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th>Cep</th>
-                <th>Lagradouo</th>
-                <th>Complemento</th>
-                <th>Bairo</th>
-                <th>Localidade</th>
-                <th>Uf</th>
-                <th>Ibge</th>
-                <th>Gia</th>
-                <th>DDD</th>
-                <th>Siafi</th>
+                <th>id </th>
+                <th>nome </th>
+                <th>estado civil </th>
+                <th>genero </th>
+                <th>data de nascimento </th>
+                <th>cep </th>
+                <th>endereço </th>
+                <th>numero </th>
+                <th>complemento </th>
+                <th>bairro </th>
+                <th>uf </th>
+                <th>telefone fixo </th>
+                <th>telefone movel </th>
+                <th>email </th>
+                <th>cpf </th>
+                <th>id </th>
+                <th>rg </th>
+                <th>possui veiculo </th>
+                <th>tipo habilitação </th>
+                <th>vaga id </th>
             </tr>
         </tfoot>
-        <tbody id="tbody">
+        <tbody>
+            <tr>
+                <td>
+                    Carregando ...
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+
+    <table id="tabelaVaga" border="1">
+        <thead>
+            <tr>
+                <th>id </th>
+                <th>nome </th>
+                <th>descricao </th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>id </th>
+                <th>nome </th>
+                <th>descricao</th>
+            </tr>
+        </tfoot>
+        <tbody>
             <tr>
                 <td>
                     Carregando ...
@@ -56,32 +266,14 @@
         </tbody>
     </table>
 
+
+
     <script>
+        
         //aqui temos um exemplo de um cep passado
         let cepInformado = '58401755';
         //abaixo passo o cep informado para a url para acessar os dados
-        fetch(`https://viacep.com.br/ws/${cepInformado}/json/`).then(async function (response) {
-            let cep = await response.json();
-            let html = "";
-                html += `
-                <tr>
-                    <td>${cep.cep}</td>
-                    <td>${cep.logradouro}</td>
-                    <td>${cep.complemento}</td>
-                    <td>${cep.bairro}</td>
-                    <td>${cep.localidade}</td>
-                    <td>${cep.uf}</td>
-                    <td>${cep.ibge}</td>
-                    <td>${cep.gia}</td>
-                    <td>${cep.ddd}</td>
-                    <td>${cep.siafi}</td>
-                </tr>
-                `
-            
-            document.getElementById("tbody").innerHTML = html
-        }).catch(function (err) {
-            console.warn('Algo deu errado', err);
-        });
+
 
         /*
         let data = {element: "barium"};
@@ -93,5 +285,7 @@
         });
         */
     </script>
+    <script src="script.js" defer></script>
 </body>
+
 </html>
